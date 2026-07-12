@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RESO Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/popup.css">
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="spinner"></div>
+    <p>Connecting...</p>
+  </div>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1 class="logo">RESO</h1>
+      <div class="header-actions">
+        <button id="btn-history" class="icon-btn" title="History">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        </button>
+        <button id="btn-settings" class="icon-btn" title="Settings">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Player Card (top) -->
+    <section class="card player-card" id="player-card">
+      <div class="player-inner">
+        <div class="album-art-wrapper" id="album-art-wrapper">
+          <div class="status-icon" id="status-icon">
+            <!-- SVG or img injected by JS -->
+          </div>
+          <div class="ambience-glow" id="ambience-glow"></div>
+        </div>
+        <div class="player-text">
+          <p class="status-label" id="status-label">Idle</p>
+          <p class="status-value" id="status-value">Outside Window</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Automation Toggle Card -->
+    <section class="card automation-card">
+      <div class="setting-row">
+        <div class="setting-info">
+          <span class="setting-title">Auto-Post Notes</span>
+          <span class="setting-desc">Automatically update your Facebook Note with the current song</span>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="master-toggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </section>
+  </div>
+
+  <!-- Progress Bar (Main) -->
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="settings-modal" class="modal">
+    <div class="modal-header">
+      <h2>Settings</h2>
+      <button class="close-btn" id="close-settings">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="modal-content">
+      <!-- Active Hours -->
+      <div class="setting-block">
+        <div class="setting-block-header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <span>Active Hours</span>
+        </div>
+        <div class="input-group row">
+          <div class="input-field">
+            <label for="start-time">From</label>
+            <input type="time" id="start-time">
+          </div>
+          <div class="input-field">
+            <label for="end-time">Until</label>
+            <input type="time" id="end-time">
+          </div>
+        </div>
+      </div>
+
+      <!-- Note Visibility -->
+      <div class="setting-block">
+        <div class="setting-block-header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span>Note Visibility</span>
+        </div>
+        <div class="select-wrapper">
+          <select id="audience-setting">
+            <option value="FRIENDS">Friends</option>
+            <option value="PUBLIC">Public</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Color Ambience -->
+      <div class="setting-block">
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-block-header" style="margin-bottom:0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+              <span>Color Ambience</span>
+            </div>
+            <span class="setting-desc">Glows the player card with the album art's dominant color</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="ambience-toggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- History Modal -->
+  <div id="history-modal" class="modal">
+    <div class="modal-header">
+      <h2>History</h2>
+      <button class="close-btn" id="close-history">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="modal-content" id="history-list">
+      <!-- History items injected via JS -->
+      <div class="empty-state">No history yet</div>
+    </div>
+  </div>
+
+  <script src="../js/popup.js"></script>
+</body>
+</html>

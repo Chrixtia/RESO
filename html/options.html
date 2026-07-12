@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-950 text-slate-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes RPC Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          boxShadow: {
+            'glow': '0 0 20px rgba(99, 102, 241, 0.15)',
+            'glow-success': '0 0 20px rgba(16, 185, 129, 0.2)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Time picker custom styles for dark theme browser defaults */
+    input[type="time"]::-webkit-calendar-picker-indicator {
+      filter: invert(0.85);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="h-full flex items-center justify-center p-6 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-950/30 via-slate-950 to-slate-950">
+  <div class="w-full max-w-md bg-slate-900/60 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-8 pb-6 border-b border-slate-800/80">
+      <div>
+        <h1 class="text-xl font-bold bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">Notes RPC</h1>
+        <p class="text-xs text-slate-400 mt-1">Automated Rich Presence Control</p>
+      </div>
+      <!-- Status Badge -->
+      <span id="status-badge" class="px-3 py-1 text-xs font-semibold rounded-full border bg-slate-800/50 text-slate-400 border-slate-700 transition-all duration-300">
+        Checking...
+      </span>
+    </div>
+
+    <!-- Toggle Section -->
+    <div class="bg-slate-950/40 rounded-2xl p-5 border border-slate-800/50 mb-6 flex items-center justify-between transition-all hover:border-slate-800">
+      <div>
+        <label for="rpc-toggle" class="font-semibold text-sm text-slate-200 block cursor-pointer">Master Control Switch</label>
+        <span class="text-xs text-slate-400 mt-1 block">Toggle automated note status updates</span>
+      </div>
+      <label class="relative inline-flex items-center cursor-pointer">
+        <input type="checkbox" id="rpc-toggle" class="sr-only peer">
+        <div class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-slate-300 after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600 peer-checked:after:bg-slate-100"></div>
+      </label>
+    </div>
+
+    <!-- Time Window Settings -->
+    <div class="space-y-4">
+      <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Active Time Window</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="flex flex-col gap-1.5">
+          <label for="start-time" class="text-xs font-medium text-slate-300">Start Time</label>
+          <input type="time" id="start-time" class="bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition duration-200">
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label for="end-time" class="text-xs font-medium text-slate-300">End Time</label>
+          <input type="time" id="end-time" class="bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition duration-200">
+        </div>
+      </div>
+      <p class="text-xs text-slate-500 mt-2">Updates to Facebook Notes will only proceed within this specified range.</p>
+    </div>
+
+    <!-- Status message -->
+    <div id="status-toast" class="mt-6 text-center text-xs text-emerald-400 font-medium opacity-0 transition-opacity duration-300">
+      Settings automatically saved & sync'd.
+    </div>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>
