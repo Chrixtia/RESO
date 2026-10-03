@@ -1,0 +1,25 @@
+{
+  "name": "reso",
+  "version": "1.2.0",
+  "description": "Real-time music presence for your Facebook Notes.",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test js/tests/utils.test.js"
+  },
+  "keywords": [
+    "chrome-extension",
+    "facebook-notes",
+    "youtube-music",
+    "rich-presence"
+  ],
+  "author": "Chrixtia",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chrome": "^0.0.306",
+    "@types/node": "^22.13.9",
+    "typescript": "^5.7.3"
+  }
+}
