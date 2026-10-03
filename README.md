@@ -6,8 +6,6 @@ Seamless real-time music presence for your Facebook Notes, powered by TypeScript
 
 [![Language](https://img.shields.io/badge/Language-TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 &nbsp;
-[![Runtime](https://img.shields.io/badge/Runtime-Chromium-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://www.google.com/chrome/)
-&nbsp;
 [![Core Library](https://img.shields.io/badge/Core_Library-Chrome_Extension_API-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://developer.chrome.com/docs/extensions/)
 &nbsp;
 [![License](https://img.shields.io/badge/License-MIT-success?style=for-the-badge)](LICENSE)
